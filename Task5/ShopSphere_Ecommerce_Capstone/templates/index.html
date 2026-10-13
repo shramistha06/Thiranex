@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <meta name="description" content="ShopSphere — a modern online shopping capstone project.">
+  <title>ShopSphere | Everyday finds, thoughtfully chosen</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script defer src="{% static 'js/app.js' %}"></script>
+</head>
+<body>
+  <form hidden aria-hidden="true">{% csrf_token %}</form>
+  <div class="announcement">Thoughtful finds for everyday living · Demo storefront</div>
+  <header class="site-header">
+    <a href="/" class="logo" data-link aria-label="ShopSphere home"><span class="logo-mark">S</span> ShopSphere</a>
+    <form id="search-form" class="search" role="search">
+      <span aria-hidden="true">⌕</span>
+      <input id="search-input" type="search" placeholder="Search products..." aria-label="Search products">
+      <button type="submit">Search</button>
+    </form>
+    <nav class="nav-actions" aria-label="Main navigation">
+      <a href="/orders" data-link id="orders-link">Orders</a>
+      <a href="/account" data-link id="account-link">Sign in</a>
+      <a href="/cart" data-link class="cart-link">Bag <span id="cart-count" class="cart-count">0</span></a>
+    </nav>
+  </header>
+  <main id="app" tabindex="-1">
+    <section class="loading-panel"><div class="spinner"></div><p>Loading ShopSphere…</p></section>
+  </main>
+  <footer class="footer">
+    <div><a href="/" data-link class="logo footer-logo"><span class="logo-mark">S</span> ShopSphere</a><p>Everyday essentials, made easy.</p></div>
+    <div class="footer-note">Capstone demonstration store · Checkout creates a demo order; no payment is collected.</div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
