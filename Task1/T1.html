@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Explore my personal portfolio, projects, technical skills, and web development work. Contact me for collaboration and opportunities.">
+    <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#102a43">
+
+    <title>Your Name | Personal Portfolio</title>
+
+    <style>
+        :root {
+            --primary: #102a43;
+            --secondary: #1769aa;
+            --background: #f4f7fb;
+            --surface: #ffffff;
+            --text: #243b53;
+            --muted: #486581;
+            --border: #bcccdc;
+            --focus: #b54708;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--secondary);
+            overflow-wrap: anywhere;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--focus);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 10px 16px;
+            background: white;
+            color: var(--primary);
+            transform: translateY(-200%);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .container {
+            width: min(1080px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        header.site-header {
+            background: var(--primary);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 18px 0;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 24px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 6px 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        main {
+            min-height: 65vh;
+        }
+
+        section {
+            padding: 55px 0;
+            scroll-margin-top: 20px;
+        }
+
+        .hero {
+            padding: 100px 0;
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            color: var(--secondary);
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary);
+            line-height: 1.25;
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 58px);
+            margin: 15px 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 21px;
+        }
+
+        .hero h1 span {
+            color: var(--secondary);
+        }
+
+        .hero-description {
+            max-width: 650px;
+            font-size: 19px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 12px 8px 0 0;
+            padding: 12px 22px;
+            border: 2px solid var(--secondary);
+            border-radius: 6px;
+            background: var(--secondary);
+            color: white;
+            font: inherit;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #0b4f82;
+            border-color: #0b4f82;
+        }
+
+        .button-outline {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        .button-outline:hover {
+            color: white;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .skills li {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: var(--surface);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(min(100%, 260px), 1fr)
+            );
+            gap: 22px;
+        }
+
+        .project-card {
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--surface);
+            overflow-wrap: anywhere;
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+        }
+
+        .contact-section {
+            max-width: 700px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px;
+            border: 1px solid #829ab1;
+            border-radius: 5px;
+            background: white;
+            color: var(--text);
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .help-text,
+        .required-note {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        #form-status:empty {
+            display: none;
+        }
+
+        #form-status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 25px 0;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 8px 18px;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            .button {
+                margin-right: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+    <header class="site-header">
+        <div class="container">
+            <nav aria-label="Main navigation">
+                <a class="logo" href="#home" aria-label="Your Name, home">
+                    Your Name
+                </a>
+
+                <ul class="nav-links">
+                    <li>
+                        <a href="#home" aria-current="page">Home</a>
+                    </li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="container">
+
+        <section id="home" class="hero" aria-labelledby="home-title">
+            <p class="eyebrow">WELCOME TO MY PORTFOLIO</p>
+
+            <h1 id="home-title">
+                Hello, I'm <span>Shramistha Gupta</span>.
+            </h1>
+
+            <p class="hero-description">
+                I am a developer passionate about creating accessible,
+                responsive, and user-friendly websites and applications.
+            </p>
+
+            <a class="button" href="#projects">View My Projects</a>
+            <a class="button button-outline" href="#contact">Contact Me</a>
+        </section>
+
+        <section id="about" aria-labelledby="about-title">
+            <h2 id="about-title">About Me</h2>
+
+            <p>
+                I am a technology enthusiast who enjoys solving problems
+                through programming and web development. I believe websites
+                should be accessible, easy to navigate, and usable by
+                everyone, including people who use assistive technologies.
+            </p>
+
+            <p>
+                My goal is to build practical digital solutions while
+                continuously improving my technical and problem-solving skills.
+            </p>
+        </section>
+
+        <section id="skills" aria-labelledby="skills-title">
+            <h2 id="skills-title">Technical Skills</h2>
+
+            <ul class="skills" aria-label="My technical skills">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>Java</li>
+                <li>Python</li>
+                <li>Django</li>
+                <li>SQL</li>
+                <li>Git and GitHub</li>
+                <li>Responsive Design</li>
+                <li>Web Accessibility</li>
+            </ul>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-title">
+            <h2 id="projects-title">My Projects</h2>
+
+            <div class="project-grid">
+
+                <article class="project-card">
+                    <h3>RentConnect</h3>
+
+                    <p>
+                        A rental platform concept that helps users discover
+                        houses, flats, and paying guest accommodations.
+                    </p>
+
+                    <p><strong>Technologies:</strong> Python, Django, HTML, CSS, PostgreSQL</p>
+                </article>
+
+                <article class="project-card">
+                    <h3>Personal Portfolio</h3>
+
+                    <p>
+                        A responsive portfolio website designed using
+                        semantic HTML5 and accessibility best practices.
+                    </p>
+
+                    <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript</p>
+                </article>
+
+                <article class="project-card">
+                    <h3>Java Programs</h3>
+
+                    <p>
+                        A collection of programming exercises covering
+                        data structures, algorithms, and problem-solving.
+                    </p>
+
+                    <p><strong>Technologies:</strong> Java 8, DSA</p>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-title">
+            <div class="contact-section">
+                <h2 id="contact-title">Contact Me</h2>
+
+                <p>
+                    Have a question, project idea, or collaboration
+                    opportunity? You can use the form below to get in touch.
+                </p>
+
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">
+                            Full Name <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            autocomplete="name"
+                            minlength="2"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            Email Address <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            maxlength="254"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            maxlength="150"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">
+                            Message <span aria-hidden="true">*</span>
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="6"
+                            minlength="10"
+                            maxlength="5000"
+                            aria-describedby="message-help"
+                            required
+                        ></textarea>
+
+                        <p id="message-help" class="help-text">
+                            Enter at least 10 characters in your message.
+                        </p>
+                    </div>
+
+                    <p class="required-note">
+                        Fields marked with * are required.
+                    </p>
+
+                    <button class="button" type="submit">
+                        Validate Message
+                    </button>
+
+                    <p
+                        id="form-status"
+                        role="status"
+                        aria-live="polite"
+                        tabindex="-1"
+                    ></p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; <span id="current-year">2026</span> Your Name.
+                All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        "use strict";
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const year = document.getElementById("current-year");
+            const form = document.getElementById("contact-form");
+            const status = document.getElementById("form-status");
+
+            year.textContent = new Date().getFullYear();
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                if (!form.reportValidity()) {
+                    status.textContent =
+                        "Please correct the highlighted fields.";
+                    return;
+                }
+
+                status.textContent =
+                    "Your form is valid. No message has been sent because a server is not connected.";
+            });
+        });
+    </script>
+</body>
+</html>
